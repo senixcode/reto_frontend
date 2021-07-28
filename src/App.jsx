@@ -1,10 +1,13 @@
+import { QueryClient, QueryClientProvider } from 'react-query'
 import CustommizedContexts from './context'
 import AppRouter from './routes/AppRouter'
-
+const queryClient = new QueryClient()
 function App() {
   return (
     <CustommizedContexts>
-      <AppRouter />
+      <QueryClientProvider client={queryClient}>
+        <AppRouter />
+      </QueryClientProvider>
     </CustommizedContexts>
   )
 }
