@@ -1,11 +1,21 @@
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../routes/AppRouter'
+
 export default function NotFound() {
   return (
-    <div className="flex justify-center h-screen">
+    <div className="flex flex-col justify-center h-screen">
+      <div className="text-center w-full">
+        <h1 className="title">Pagina no encontrada error 404</h1>
+        <Link to={ROUTES.signin} className="font-medium text-primary-600 ">
+          ¿Desea iniciar sessión?
+        </Link>
+      </div>
       <svg
         id="a706cf1c-1654-439b-8fcf-310eb7aa0e00"
         width="1120.59226"
         height="777.91584"
         viewBox="0 0 1120.59226 777.91584"
+        className="flex w-full max-h-screen p-8"
       >
         <title>not found</title>
         <circle cx="212.59226" cy="103" r="64" fill="#ff6584" />
