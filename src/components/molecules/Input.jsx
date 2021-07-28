@@ -14,7 +14,7 @@ export default function Input({
         <input type={type} {...register} className="rounded-lg" />
       </div>
       {error && (
-        <span className="text-red-600">
+        <span className="text-red-600 text-sm">
           {customError ? error.message || messageDefault : messageDefault}
         </span>
       )}
