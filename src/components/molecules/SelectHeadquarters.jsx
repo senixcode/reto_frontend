@@ -1,30 +1,43 @@
 import React from 'react'
+import Select from './Select'
 
-const messageDefault = "'* Es requerido este campo'"
+const field = 'headquarters'
+const headquarters = ['Miraflores', 'La Molina', 'San Isidro']
+const options = headquarters.map((headquarter) => ({
+  value: headquarter,
+  text: headquarter,
+}))
 export default function SelectHeadquarters({
-  name,
   register,
-  error,
-  customError = false,
+  formState,
+  defaultValue,
+  required = true,
 }) {
   return (
-    <>
-      <div className="flex flex-col gap-y-1">
-        <label> Sedes </label>
-        <select {...register} className="rounded-lg">
-          <option hidden value=""></option>
-          {['Miraflores', 'La Molina', 'San Isidro'].map((headquarter, i) => (
-            <option key={i} value={headquarter}>
-              {headquarter}
-            </option>
-          ))}
-        </select>
-      </div>
-      {error && (
-        <span className="text-red-600 text-sm">
-          {customError ? error.message || messageDefault : messageDefault}
-        </span>
-      )}
-    </>
+    <Select
+      name="Sedes"
+      options={options}
+      register={register(field, {
+        required,
+      })}
+      customError={true}
+      defaultValue={defaultValue}
+      error={formState.errors[field]}
+    />
   )
 }
+
+// <>
+//   <div className="flex flex-col gap-y-1">
+//     <label> Sedes </label>
+//     <select {...register} className="rounded-lg">
+//       <option hidden value=""></option>
+//       {headquarters.map((headquarter, i) => (
+//         <option key={i} value={headquarter}>
+//           {headquarter}
+//         </option>
+//       ))}
+//     </select>
+//   </div>
+//   <MessageErrorInput {...{ error, customError }} />
+// </>
