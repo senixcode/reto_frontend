@@ -2,3 +2,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn_primary {
+  @apply text-neutral-50 w-full block bg-primary-600 hover:bg-primary-700  font-semibold rounded-lg  focus:outline-none
+          px-4 py-3 mt-6;
+}
+
+.nav_sidebar {
+  @apply flex items-center space-x-3 text-neutral-50 p-2 rounded-md font-medium focus:outline-none hover:bg-primary-700;
+}
+
+.title {
+  @apply text-4xl font-bold text-neutral-800;
+}
