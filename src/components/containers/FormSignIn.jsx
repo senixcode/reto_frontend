@@ -31,6 +31,7 @@ export default function FormSignIn() {
       </span>
     </div>
   )
+
   const handleCustomSubmit = (body) => mutation.mutate({ body })
 
   return (
@@ -60,11 +61,9 @@ export default function FormSignIn() {
 
       {errors && <ShowErrors />}
 
-      <Link to={ROUTES.signup}>
-        <span className="block text-right font-medium text-sm">
-          ¿Desea registrarse?
-        </span>
-      </Link>
+      <span className="block text-right font-medium text-sm">
+        <Link to={ROUTES.signup}>¿Desea registrarse?</Link>
+      </span>
 
       <button type="submit" className="btn_primary">
         Iniciar Sesión
