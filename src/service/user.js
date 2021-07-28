@@ -1,9 +1,9 @@
 import { client, ENDPOINTS } from "./config"
-import { ErrorCustom, isSatisfactoryStatus } from "./help"
+import { ErrorCustom, HeaderToken, isSatisfactoryStatus } from "./help"
 
-export const findUser = async (id) => {
+export const findUser = async ({id,token}) => {
     try {
-        const respone = await client.get(ENDPOINTS.USER(id))
+        const respone = await client.get(ENDPOINTS.USER(id),HeaderToken(token))
         if (isSatisfactoryStatus(respone)) return respone.data
     } catch (error) {
         ErrorCustom(error)
@@ -11,9 +11,9 @@ export const findUser = async (id) => {
     }
 }
 
-export const findUsers = async () => {
+export const findUsers = async ({token}) => {
     try {
-        const respone = await client.get(ENDPOINTS.USERS)
+        const respone = await client.get(ENDPOINTS.USERS,HeaderToken(token))
         if (isSatisfactoryStatus(respone)) return respone.data
     } catch (error) {
         ErrorCustom(error)
@@ -21,9 +21,9 @@ export const findUsers = async () => {
     }
 }
 
-export const userUpdate = async ({body}) => {
+export const userUpdate = async ({body,token}) => {
      try {
-        const respone = await client.put(ENDPOINTS.USER_UPDATE(body.id), body)
+        const respone = await client.put(ENDPOINTS.USER_UPDATE(body.id), body, HeaderToken(token))
         if (isSatisfactoryStatus(respone)) return respone.data
     } catch (error) {
         ErrorCustom(error)
