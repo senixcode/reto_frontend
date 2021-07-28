@@ -4,12 +4,11 @@ import MyAccountForm, {
   TYPE_MYACCOUNT_FORM,
 } from '../components/containers/MyAccountForm'
 import CardUser from '../components/molecules/CardUser'
-import Modal from '../components/molecules/Modal'
 import { WelcomeContext } from '../context/WelcomeProvider'
 
 export default function Home() {
   const { welcome } = useContext(WelcomeContext)
-  let [isOpen, setIsOpen] = useState(true)
+  let [isOpen, setIsOpen] = useState(false)
   function closeModal() {
     setIsOpen(false)
   }
