@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../../routes/AppRouter'
 import Input from '../molecules/Input'
 import SelectHeadquarters from '../molecules/SelectHeadquarters'
 
-export default function FormSignin({ type }) {
+export default function FormSignup({ type }) {
   const [errors, setErrors] = useState('')
 
   const ShowErrors = () => (
@@ -23,6 +25,11 @@ export default function FormSignin({ type }) {
       <Input name="Contraseña" />
       <Input name="Comfirmar Contraseña" />
       {errors && <ShowErrors />}
+      <Link to={ROUTES.signin}>
+        <span className="block text-right font-medium text-sm">
+          ¿Desea iniciar sessión?
+        </span>
+      </Link>
       <button className="btn_primary">Iniciar Sesión</button>
     </form>
   )

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ROUTES_DASHBOARD } from '../../routes/AppRouter'
+import { ROUTES } from '../../routes/AppRouter'
 import HomeIconSvg from '../atoms/HomeIconSvg'
 import LogoutIconSvg from '../atoms/LogoutIconSvg'
 import MessageIconSvg from '../atoms/MessageIconSvg'
@@ -7,17 +7,17 @@ import MyAccountIconSvg from '../atoms/MyAccountIconSvg'
 export default function Sidebar() {
   const NAVS = [
     {
-      href: ROUTES_DASHBOARD.home,
+      href: ROUTES.dasboard.home,
       icon: <HomeIconSvg />,
       name: 'Inicio',
     },
     {
-      href: ROUTES_DASHBOARD?.messages,
+      href: ROUTES.dasboard.messages,
       icon: <MessageIconSvg />,
       name: 'Mensajes',
     },
     {
-      href: ROUTES_DASHBOARD?.myAccount,
+      href: ROUTES.dasboard.myAccount,
       icon: <MyAccountIconSvg />,
       name: 'Mi cuenta',
     },

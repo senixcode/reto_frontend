@@ -6,26 +6,26 @@ import NoFoundPage from '../screens/404'
 import Home from '../screens/Home'
 import Message from '../screens/Message'
 import MyAccount from '../screens/MyAccount'
-import { ROUTES_DASHBOARD } from './AppRouter'
+import { ROUTES } from './AppRouter'
 
 export default function Dashboard() {
   return (
     <div className="flex flex-wrap bg-gray-100 w-full h-screen">
       <Sidebar />
       <Switch>
-        <Route exact path={ROUTES_DASHBOARD.home} component={Home} />
+        <Route exact path={ROUTES.dasboard.home} component={Home} />
         <PublicRoute
           exact
-          path={ROUTES_DASHBOARD.messages}
+          path={ROUTES.dasboard.messages}
           component={Message}
         />
         <PublicRoute
           exact
-          path={ROUTES_DASHBOARD.myAccount}
+          path={ROUTES.dasboard.myAccount}
           component={MyAccount}
         />
         <Route path="*">
-          <Redirect to="/404">
+          <Redirect to={ROUTES.noFound}>
             <NoFoundPage />
           </Redirect>
         </Route>

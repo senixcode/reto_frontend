@@ -10,22 +10,30 @@ import NotFound from '../screens/404'
 import Dashboard from './Dashboard'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-export const ROUTES_DASHBOARD = {
-  home: '/dashboard',
-  messages: '/dashboard/messages',
-  myAccount: '/dashboard/myAccount',
+
+export const ROUTES = {
+  index: '/',
+  signin: '/signin',
+  signup: '/signup',
+  dasboard: {
+    home: '/dashboard',
+    messages: '/dashboard/messages',
+    myAccount: '/dashboard/myAccount',
+  },
+  noFound: '/404',
 }
+
 export default function AppRouter() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={SignIn} />
-        <PublicRouter exact path="/signin" component={SignIn} />
-        <PublicRouter exact path="/signup" component={SignUp} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route exact path="/404" component={NotFound} />
+        <PublicRouter exact path={ROUTES.index} component={SignIn} />
+        <PublicRouter exact path={ROUTES.signin} component={SignIn} />
+        <PublicRouter exact path={ROUTES.signup} component={SignUp} />
+        <Route path={ROUTES.dasboard.home} component={Dashboard} />
+        <Route exact path={ROUTES.noFound} component={NotFound} />
         <Route path="*">
-          <Redirect to="/404" />
+          <Redirect to={ROUTES.noFound} />
         </Route>
       </Switch>
     </Router>
