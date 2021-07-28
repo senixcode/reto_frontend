@@ -1,23 +1,26 @@
 import React from 'react'
-const messageDefault = "'* Es requerido este campo'"
+import MessageErrorInput from './MessageErrorInput'
+
 export default function Input({
   name,
   type = 'text',
   register,
   error,
-  customError = false,
+  customError,
+  defaultValue = '',
 }) {
   return (
     <>
       <div className="flex flex-col gap-y-1">
         <label>{name}</label>
-        <input type={type} {...register} className="rounded-lg" />
+        <input
+          type={type}
+          defaultValue={defaultValue}
+          {...register}
+          className="rounded-lg"
+        />
       </div>
-      {error && (
-        <span className="text-red-600 text-sm">
-          {customError ? error.message || messageDefault : messageDefault}
-        </span>
-      )}
+      <MessageErrorInput {...{ error, customError }} />
     </>
   )
 }
