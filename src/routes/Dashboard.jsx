@@ -13,13 +13,13 @@ export default function Dashboard() {
     <div className="flex flex-wrap bg-gray-100 w-full h-screen">
       <Sidebar />
       <Switch>
-        <Route exact path={ROUTES.dasboard.home} component={Home} />
-        <PublicRoute
+        <PrivateRouter exact path={ROUTES.dasboard.home} component={Home} />
+        <PrivateRouter
           exact
           path={ROUTES.dasboard.messages}
           component={Message}
         />
-        <PublicRoute
+        <PrivateRouter
           exact
           path={ROUTES.dasboard.myAccount}
           component={MyAccount}
