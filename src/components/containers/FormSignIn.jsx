@@ -6,6 +6,7 @@ import { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthProvider'
 import { useMutation } from 'react-query'
 import { useForm } from 'react-hook-form'
+import validationsInputs from '../../help/validationsInputs'
 export default function FormSignIn() {
   const auth = useContext(AuthContext)
   const history = useHistory()
@@ -19,8 +20,7 @@ export default function FormSignIn() {
       history.push(ROUTES.dasboard.home)
     },
     onError: function (error) {
-      if (error.message.startsWith('Invalid credentials for Molichamba'))
-        setErrors('Error de credenciales')
+      if ([401, 404].includes(error.status)) setErrors('Error de credenciales')
     },
   })
 
@@ -40,9 +40,7 @@ export default function FormSignIn() {
         register={register('email', {
           required: true,
           pattern: {
-            value:
-              // eslint-disable-next-line
-              /^(([^<>()[\]\.,;:\s@"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+            value: validationsInputs.emailRegex,
             message: 'Correo Incorrecto',
           },
         })}
