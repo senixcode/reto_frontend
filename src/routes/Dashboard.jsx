@@ -1,7 +1,6 @@
 import { Redirect, Route, Switch } from 'react-router-dom'
 import Sidebar from '../components/containers/Sidebar'
 import PrivateRouter from '../components/molecules/PrivateRoute'
-import PublicRoute from '../components/molecules/PublicRoute'
 import NoFoundPage from '../screens/404'
 import Home from '../screens/Home'
 import Message from '../screens/Message'

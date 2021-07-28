@@ -3,7 +3,6 @@ import {
   Route,
   BrowserRouter as Router,
   Switch,
-  useHistory,
 } from 'react-router-dom'
 import PrivateRouter from '../components/molecules/PrivateRoute'
 import PublicRouter from '../components/molecules/PublicRoute'
@@ -11,8 +10,6 @@ import NotFound from '../screens/404'
 import Dashboard from './Dashboard'
 import SignIn from '../screens/SignIn'
 import SignUp from '../screens/SignUp'
-import { useContext } from 'react'
-import { AuthContext } from '../context/AuthProvider'
 
 export const ROUTES = {
   index: '/',
@@ -27,9 +24,6 @@ export const ROUTES = {
 }
 
 export default function AppRouter() {
-  const auth = useContext(AuthContext)
-  const history = useHistory()
-
   return (
     <Router>
       <Switch>
