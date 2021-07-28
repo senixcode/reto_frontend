@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 import { ROUTES } from '../../routes/AppRouter'
@@ -7,7 +7,10 @@ import SelectHeadquarters from '../molecules/SelectHeadquarters'
 import { signup } from '../../service/auth'
 import { useMutation } from 'react-query'
 import { useForm } from 'react-hook-form'
-import validationsInputs from '../../help/validationsInputs'
+import InputPhone from '../molecules/InputPhone'
+import InputEmail from '../molecules/InputEmail'
+import InputPassword from '../molecules/InputPassword'
+import InputConfirmPassword from '../molecules/InputConfirmPassword'
 export default function FormSignup({ type }) {
   const auth = useContext(AuthContext)
   const history = useHistory()
@@ -56,59 +59,13 @@ export default function FormSignup({ type }) {
         customError={true}
       />
 
-      <Input
-        name="Correo"
-        register={register('email', {
-          required: true,
-          pattern: {
-            value: validationsInputs.emailRegex,
-            message: 'Correo Incorrecto',
-          },
-        })}
-        error={formState.errors.email}
-        customError={true}
-      />
+      <InputEmail {...{ register, formState }} />
+      <InputPhone {...{ register, formState }} />
 
-      <Input
-        name="Celular"
-        register={register('phone', {
-          required: true,
-        })}
-        error={formState.errors.phone}
-        customError={true}
-      />
+      <SelectHeadquarters {...{ register, formState }} />
 
-      <SelectHeadquarters
-        register={register('headquarters', {
-          required: true,
-        })}
-        customError={true}
-        type="password"
-        error={formState.errors.headquarters}
-      />
-
-      <Input
-        name="Contraseña"
-        register={register('password', {
-          required: true,
-          validate: (value) =>
-            value === getValues().password || 'Las contraseñas no coinciden',
-        })}
-        customError={true}
-        type="password"
-        error={formState.errors.password}
-      />
-
-      <Input
-        name="Comfirmar Contraseña"
-        register={register('confirmPassword', {
-          validate: (value) =>
-            value === getValues().password || 'Las contraseñas no coinciden',
-        })}
-        customError={true}
-        type="password"
-        error={formState.errors.confirmPassword}
-      />
+      <InputPassword {...{ register, formState }} />
+      <InputConfirmPassword {...{ register, formState, getValues }} />
 
       <span className="block text-right font-medium text-sm">
         <Link to={ROUTES.signin}>¿Desea iniciar sessión?</Link>
