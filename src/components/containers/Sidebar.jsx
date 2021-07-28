@@ -1,10 +1,13 @@
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/AuthProvider'
 import { ROUTES } from '../../routes/AppRouter'
 import HomeIconSvg from '../atoms/HomeIconSvg'
 import LogoutIconSvg from '../atoms/LogoutIconSvg'
 import MessageIconSvg from '../atoms/MessageIconSvg'
 import MyAccountIconSvg from '../atoms/MyAccountIconSvg'
 export default function Sidebar() {
+  const auth = useContext(AuthContext)
   const NAVS = [
     {
       href: ROUTES.dasboard.home,
@@ -22,7 +25,8 @@ export default function Sidebar() {
       name: 'Mi cuenta',
     },
     {
-      href: '/#',
+      href: ROUTES.signin,
+      click: () => auth.logout(),
       icon: <LogoutIconSvg />,
       name: 'Cierre de sesión',
     },
@@ -42,9 +46,13 @@ export default function Sidebar() {
         </div>
       </div>
       <ul className="space-y-2 text-sm">
-        {NAVS.map(({ href, icon, name }, i) => (
+        {NAVS.map(({ href, icon, name, click }, i) => (
           <li key={i}>
-            <Link to={href} className="nav_sidebar">
+            <Link
+              to={href}
+              className="nav_sidebar"
+              onClick={() => (click ? click() : null)}
+            >
               <span>{icon}</span>
               <span>{name}</span>
             </Link>
