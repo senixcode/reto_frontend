@@ -11,7 +11,7 @@ export const ErrorCustom = (error) => {
 
 export const HeaderToken = (token) => ({
   headers: {
-    Authorization: `Bearer ${token}`,
+   "x-access-token" : token,
   },
 })
 
