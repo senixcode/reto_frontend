@@ -1,6 +1,6 @@
 export default function SigninImgSvg() {
   return (
-    <div className="bg-neutral-200 h-screen hidden md:block">
+    <div className="bg-neutral-100 md:flex hidden">
       <svg
         id="a3c5dfd7-be65-444e-9313-11a650221507"
         data-name="Layer 1"
