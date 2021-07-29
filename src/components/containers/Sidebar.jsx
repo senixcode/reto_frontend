@@ -41,7 +41,7 @@ export default function Sidebar() {
         />
         <div>
           <h4 className="font-semibold text-lg capitalize font-poppins tracking-wide">
-            Luis Romero
+            {auth?.user?.username?.names}
           </h4>
         </div>
       </div>
