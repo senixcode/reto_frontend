@@ -22,9 +22,8 @@ export default function MyAccountForm({ type }) {
 
   const mutation = useMutation(userUpdate, {
     onSuccess: function (data) {
-      console.log(data)
-      auth.login({ ...data })
-      setWelcome(false)
+      auth.login({ username: data, token: auth.user.token })
+      welcome && setWelcome(false)
     },
     onError: function (error) {
       console.log('error signup', error)
@@ -32,8 +31,10 @@ export default function MyAccountForm({ type }) {
   })
 
   const handleCustomSubmit = (body) => {
-    const data = { ...body, id: auth?.user.username?._id }
-    mutation.mutate({ body: data, token: auth?.user.token })
+    const { phone } = body
+    let data = { ...body, phone: +phone, id: auth?.user.username?._id }
+    data = { body: data, token: auth.user.token }
+    mutation.mutate(data)
   }
 
   const TYPE_ACTION_BUTTON = {
