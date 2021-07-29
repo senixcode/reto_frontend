@@ -8,6 +8,7 @@ import { useMutation } from 'react-query'
 import InputPhone from '../molecules/InputPhone'
 import InputEmail from '../molecules/InputEmail'
 import { AuthContext } from '../../context/AuthProvider'
+import { formDateToYearMonthDay } from '../../help/date'
 export const TYPE_MYACCOUNT_FORM = {
   Home: 'home',
   Profile: 'profile',
@@ -43,7 +44,7 @@ export default function MyAccountForm({ type }) {
       name: 'Guardar',
     },
   }
-  console.log('hola auth', auth)
+
   return (
     <form
       className="flex flex-col mt-8"
@@ -126,7 +127,7 @@ const Profile = ({ auth, formState, register }) => (
           required: true,
         })}
         customError={true}
-        defaultValue={auth?.user.username?.dateOfBirth}
+        defaultValue={formDateToYearMonthDay(auth?.user.username?.dateOfBirth)}
         error={formState.errors.dateOfBirth}
       />
     </div>
