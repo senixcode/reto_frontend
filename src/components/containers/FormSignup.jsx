@@ -11,8 +11,10 @@ import InputPhone from '../molecules/InputPhone'
 import InputEmail from '../molecules/InputEmail'
 import InputPassword from '../molecules/InputPassword'
 import InputConfirmPassword from '../molecules/InputConfirmPassword'
+import { WelcomeContext } from '../../context/WelcomeProvider'
 export default function FormSignup({ type }) {
   const auth = useContext(AuthContext)
+  const { deleteWelcome } = useContext(WelcomeContext)
   const history = useHistory()
   const { register, handleSubmit, formState, getValues } = useForm({
     criteriaMode: 'all',
@@ -21,6 +23,7 @@ export default function FormSignup({ type }) {
   const mutation = useMutation(signup, {
     onSuccess: function (data) {
       auth.login({ ...data })
+      deleteWelcome()
       history.push(ROUTES.dasboard.home)
     },
     onError: function (error) {
@@ -72,7 +75,7 @@ export default function FormSignup({ type }) {
       </span>
 
       <button type="submit" className="btn_primary">
-        Iniciar Sesión
+        Registrarme
       </button>
     </form>
   )
