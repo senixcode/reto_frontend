@@ -3,25 +3,20 @@ import ModalDetailUser from '../components/containers/ModalDetailUser'
 import MyAccountForm, {
   TYPE_MYACCOUNT_FORM,
 } from '../components/containers/MyAccountForm'
-import CardUser from '../components/molecules/CardUser'
+import Users from '../components/containers/Users'
 import { WelcomeContext } from '../context/WelcomeProvider'
 
 export default function Home() {
-  const { welcome } = useContext(WelcomeContext)
+  const { welcome: isWelcome } = useContext(WelcomeContext)
   let [isOpen, setIsOpen] = useState(false)
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
+  const closeModal = () => setIsOpen(false)
+  const openModal = () => setIsOpen(true)
 
   return (
     <>
       <ModalDetailUser closeModal={closeModal} isOpen={isOpen} />
       <div className="p-8 md:w-9/12 lg:w-10/12 bg-neutral-50">
-        {welcome ? (
+        {isWelcome ? (
           <>
             <h1 className="title">Cuéntanos sobre ti</h1>
             <h3 className="text-lg font-semibold text-neutral-800">
@@ -30,14 +25,7 @@ export default function Home() {
             <MyAccountForm type={TYPE_MYACCOUNT_FORM.Home} />
           </>
         ) : (
-          <>
-            <div>
-              <input type="text" placeholder="Buscar" className="rounded-lg" />
-            </div>
-            <div className="flex flex-wrap gap-x-8">
-              <CardUser openModal={openModal} />
-            </div>
-          </>
+          <Users openModal={openModal} />
         )}
       </div>
     </>
