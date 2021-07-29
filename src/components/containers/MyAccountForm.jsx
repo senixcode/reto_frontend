@@ -14,7 +14,7 @@ export const TYPE_MYACCOUNT_FORM = {
 }
 export default function MyAccountForm({ type }) {
   const auth = useContext(AuthContext)
-  const { setWelcome } = useContext(WelcomeContext)
+  const { welcome, setWelcome } = useContext(WelcomeContext)
   const { register, handleSubmit, formState } = useForm({
     criteriaMode: 'all',
   })
@@ -95,6 +95,7 @@ export default function MyAccountForm({ type }) {
           />
         </div>
       </div>
+      {welcome === false && <Profile {...{ auth, formState, register }} />}
       <div className=" flex justify-end">
         <div className="w-3/12">
           <button className="btn_primary" type="submit">
@@ -105,3 +106,40 @@ export default function MyAccountForm({ type }) {
     </form>
   )
 }
+
+const Profile = ({ auth, formState, register }) => (
+  <div className="grid md:grid-cols-2 gap-x-8 gap-y-2">
+    <div>
+      <Input
+        name="Nombres"
+        register={register('names', {
+          required: true,
+        })}
+        customError={true}
+        defaultValue={auth?.user.username?.names}
+        error={formState.errors.names}
+      />
+      <Input
+        name="Fecha de Nacimiento"
+        type="date"
+        register={register('dateOfBirth', {
+          required: true,
+        })}
+        customError={true}
+        defaultValue={auth?.user.username?.dateOfBirth}
+        error={formState.errors.dateOfBirth}
+      />
+    </div>
+    <div>
+      <Input
+        name="Apellidos"
+        register={register('lastName', {
+          required: true,
+        })}
+        customError={true}
+        defaultValue={auth?.user.username?.lastName}
+        error={formState.errors.lastName}
+      />
+    </div>
+  </div>
+)
